@@ -1,0 +1,15 @@
+(defun pow (k n)
+	(COND ((= n 0) 1)
+	(t (* k (pow k (- n 1))))
+	)
+)
+
+(defun go1 (lst) 
+	(setq result 1)
+	(mapcar (lambda (lst)
+		(if (listp lst) (setq result (* (pow (* (CAR lst) (- (CAR lst) 1)) (CADR lst)) result)) 
+				(return-from go1 nil))
+		)  lst
+	)
+	(return-from go1 result)
+)
